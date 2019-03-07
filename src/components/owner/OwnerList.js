@@ -6,7 +6,7 @@ class OwnerList extends Component {
             <div>
                 <h1>Owners</h1>
             {this.props.owners.map((owner) => {
-                return <p>{owner.name} {owner.phone}</p>
+                return <div><p key={owner.id}>{owner.name} {owner.phone}</p><button onClick={() => this.props.deleteOwner(owner.id)}>Delete</button></div>
             }
             )}
             </div>

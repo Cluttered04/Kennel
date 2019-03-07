@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import deleteAnimal from "../ApplicationViews"
 
 class EmployeeList extends Component {
     render() {
@@ -6,7 +7,12 @@ class EmployeeList extends Component {
             <article>
                 <h1>Employee List</h1>
                 {this.props.employees.map((singleEmployee) => {
-                    return <p key={singleEmployee.id}>{singleEmployee.name}</p>
+                    return (
+                    <div><p key={singleEmployee.id}>{singleEmployee.name}</p>
+                    <button onClick={(() =>
+                    this.props.deleteEmployee(singleEmployee.id))}>Delete</button>
+                    </div>
+                    )
                 })}
             </article>
         );

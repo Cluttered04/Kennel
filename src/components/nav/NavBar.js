@@ -1,9 +1,11 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
+import Kennel from "../Kennel.js"
 
 
 class NavBar extends Component {
+
     render() {
         return (
             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
@@ -20,6 +22,11 @@ class NavBar extends Component {
                     <li className="nav-item">
                         <Link className="nav-link" to="/employees">Employees</Link>
                     </li>
+                    <input type="text" className="nav-item" id="nav-search" onKeyPress={event => {
+                        if(event.key === "Enter") {
+                            Kennel.handleKeyPress()
+                        }
+                    }}></input>
                 </ul>
             </nav>
         )
