@@ -44,18 +44,14 @@ class ApplicationViews extends Component {
         })
     }
 
-    deleteAnimal = id => {
-        return fetch(`http://localhost:5002/animals/${id}`, {
-            method: "DELETE"
-        })
-        .then(e => e.json())
-        .then(() => fetch(`http://localhost:5002/animals`))
-        .then(e => e.json())
+
+    deleteAnimal = (id) => {
+        return AnimalAPIManager.removeAndList(id)
         .then(animals => this.setState({
             animals: animals
-        })
-      )
-    }
+          })
+        )
+      }
 
     deleteEmployee = id => {
         return fetch(`http://localhost:5002/employees/${id}`, {
