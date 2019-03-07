@@ -5,6 +5,11 @@ import LocationList from './location/LocationList'
 import EmployeeList from './employee/EmployeeList'
 import OwnerList from "./owner/OwnerList.js"
 import SearchResults from "./search/SearchResults.js"
+import AnimalAPIManager from "../modules/AnimalAPIManager"
+import EmployeesAPIManager from "../modules/EmployeesAPIManager"
+import LocationsAPIManafer from "../modules/LocationsAPIManager"
+import OwnersAPIManager from "../modules/OwnersAPIManager"
+import LocationsAPIManager from '../modules/LocationsAPIManager';
 
 
 class ApplicationViews extends Component {
@@ -19,20 +24,16 @@ class ApplicationViews extends Component {
 
     componentDidMount(){
         const newState = {};
-        fetch("http://localhost:5002/employees")
-        .then(employees => employees.json())
+        EmployeesAPIManager.getAll()
         .then(parsedEmployees => {
             newState.employees = parsedEmployees;
-            return fetch("http://localhost:5002/locations")
-            .then(locations => locations.json())
+            LocationsAPIManager.getAll()
             .then(parsedLocations => {
                 newState.locations = parsedLocations
-                return fetch("http://localhost:5002/owners")
-                .then(owners => owners.json())
+                OwnersAPIManager.getAll()
                 .then(parsedOwners => {
                     newState.owners = parsedOwners
-                    return fetch("http://localhost:5002/animals")
-                    .then(animals => animals.json())
+                    AnimalAPIManager.getAll()
                     .then(parsedAnimals => {
                         newState.animals = parsedAnimals
                         this.setState(newState)
