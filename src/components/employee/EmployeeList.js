@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import deleteAnimal from "../ApplicationViews"
+import {Link} from "react-router-dom"
 
 class EmployeeList extends Component {
     render() {
@@ -9,8 +10,7 @@ class EmployeeList extends Component {
                 {this.props.employees.map((singleEmployee) => {
                     return (
                     <div key={singleEmployee.id}><p>{singleEmployee.name}</p>
-                    <button onClick={(() =>
-                    this.props.deleteEmployee(singleEmployee.id))}>Delete</button>
+                        <Link className="nav-link" to={`/employees/${singleEmployee.id}`}>Details</Link>
                     </div>
                     )
                 })}
@@ -20,3 +20,5 @@ class EmployeeList extends Component {
 }
 
 export default EmployeeList;
+
+// <Link className="nav-link" to={`/owners/${owner.id}`}>Details</Link></div>

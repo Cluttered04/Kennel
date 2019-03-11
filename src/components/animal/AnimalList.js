@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import dog from "./DogIcon.png"
 import "./Animal.css"
+import { Link } from "react-router-dom";
 
 
 
@@ -15,9 +16,7 @@ import "./Animal.css"
                                 <h5 className="card-title">
                                     <img src={dog} className="icon--dog" />
                                     {animal.name}
-                                    <a href="#"
-                                        onClick={() => this.props.deleteAnimal(animal.id)}
-                                        className="card-link">Delete</a>
+                                    <Link className="nav-link" to={`/animals/${animal.id}`}>Details</Link>
                                 </h5>
                             </div>
                         </div>
@@ -27,7 +26,6 @@ import "./Animal.css"
             )
         }
     }
-
 
 
 

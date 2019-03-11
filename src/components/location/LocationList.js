@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import {Link} from "react-router-dom"
 
 class LocationList extends Component {
     render() {
@@ -6,9 +7,8 @@ class LocationList extends Component {
             <section>
                 <h1>Locations</h1>
                 {this.props.locations.map((location) => {
-                    return <div><h1 key={location.id}>{location.name} </h1><p>{location.address}</p><button onClick={() => {
-                        this.props.deleteLocation(location.id)
-                    }}>Delete</button>
+                    return <div key={location.id}><h1>{location.name} </h1><p>{location.address}</p>
+                    <Link className="nav-link" to={`/locations/${location.id}`}>Details</Link>
                     </div>
                 })}
             </section>
@@ -18,3 +18,4 @@ class LocationList extends Component {
 }
 
 export default LocationList;
+
