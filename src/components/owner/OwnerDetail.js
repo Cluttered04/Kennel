@@ -11,7 +11,7 @@ export default class OwnerDetail extends Component  {
             <h4>Owner</h4>
             <h5>{owner.name}</h5>
             <button onClick={() => this.props.deleteOwner(owner.id)
-                .then(()=> this.props.history.push("/owners"))}>Delete</button>
+                .then(()=> this.props.history.push("/owners"))}>Delete</button><button onClick={() => this.props.history.push(`/owners/${owner.id}/edit`)}>Edit</button>
             </div>
             </section>
         )

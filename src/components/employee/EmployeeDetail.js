@@ -7,7 +7,9 @@ export default class EmployeeDetail extends Component {
             <div key={employee.id}>
             <h4>{employee.name}</h4>
             <button onClick={() => this.props.deleteEmployee(employee.id).then(() => this.props.history.push("/employees"))}>Delete</button>
+            <button onClick={() => this.props.history.push(`/employees/${employee.id}/edit`)}>Edit</button>
             </div>
         </section>
     }
 }
+

@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import AnimalList from "./animal/AnimalList";
 import LocationList from "./location/LocationList";
@@ -15,8 +15,15 @@ import EmployeeDetail from "./employee/EmployeeDetail";
 import LocationDetail from "./location/LocationDetail";
 import AnimalForm from "./animal/AnimalForm";
 import EmployeeForm from "./employee/EmployeeForm";
+import OwnerForm from "./owner/OwnerForm";
+import Login from "./authentication/Login";
+import AnimalEditForm from "./animal/AnimalEditForm";
+import EmployeeEditForm from "./employee/EmployeeEditForm";
+import OwnerEditForm from "./owner/OwnerEditForm"
 
 class ApplicationViews extends Component {
+  isAuthenticated = () => sessionStorage.getItem("credentials") != null;
+
   state = {
     employees: [],
     locations: [],
@@ -59,10 +66,47 @@ class ApplicationViews extends Component {
         })
       );
 
+  addOwner = owner => {
+    return OwnersAPIManager.postOwner(owner)
+      .then(() => OwnersAPIManager.getAll())
+      .then(owners => this.setState({ owners: owners }));
+  };
+
   addEmployee = employee =>
     EmployeesAPIManager.postEmployee(employee)
       .then(() => EmployeesAPIManager.getAll())
       .then(employees => this.setState({ employees: employees }));
+
+  updateAnimal = editedAnimalObject => {
+    return AnimalAPIManager.put(editedAnimalObject)
+      .then(() => AnimalAPIManager.getAll())
+      .then(animals => {
+        this.setState({
+          animals: animals
+        });
+      });
+  };
+
+  updateEmployee = editedEmployeeObject => {
+
+    return EmployeesAPIManager.updateEmployee(editedEmployeeObject)
+      .then(() => EmployeesAPIManager.getAll())
+      .then(employees => {
+        this.setState({
+          employees: employees
+        });
+      });
+  };
+
+  updateOwner = editedOwnerObject => {
+    return OwnersAPIManager.updateOwner(editedOwnerObject)
+    .then(() => OwnersAPIManager.getAll())
+    .then(owners => {
+      this.setState({
+        owners: owners
+      })
+    })
+  }
 
   deleteEmployee = id => {
     return fetch(`http://localhost:5002/employees/${id}`, {
@@ -141,6 +185,7 @@ class ApplicationViews extends Component {
           render={props => {
             return (
               <OwnerList
+                {...props}
                 deleteOwner={this.deleteOwner}
                 owners={this.state.owners}
               />
@@ -148,7 +193,19 @@ class ApplicationViews extends Component {
           }}
         />
         <Route
-          path="/owners/:ownerId(\d+)"
+          path="/owners/new"
+          render={props => {
+            return (
+              <OwnerForm
+                {...props}
+                addOwner={this.addOwner}
+                owners={this.state.owners}
+              />
+            );
+          }}
+        />
+        <Route
+          exact path="/owners/:ownerId(\d+)"
           render={props => {
             return (
               <OwnerDetail
@@ -159,6 +216,12 @@ class ApplicationViews extends Component {
             );
           }}
         />
+        <Route path="/owners/:ownerId(\d+)/edit"
+        render={props => {
+          return (
+            <OwnerEditForm {...props} updateOwner={this.updateOwner}/>
+          )
+        }}/>
         <Route
           exact
           path="/animals"
@@ -166,6 +229,16 @@ class ApplicationViews extends Component {
             return <AnimalList {...props} animals={this.state.animals} />;
           }}
         />
+        {/* if(this.isAuthenticated()) {
+              return (
+                <EmployeeList
+                  {...props}
+                  deleteEmployee={this.deleteEmployee}
+                  employees={this.state.employees}
+                />)
+            } else {
+              return <Redirect to="/login"/>
+            } */}
         {/* // Our shiny new route. We pass employees to the AnimalForm so a
         dropdown can be populated */}
         <Route
@@ -181,6 +254,7 @@ class ApplicationViews extends Component {
           }}
         />
         <Route
+          exact
           path="/animals/:animalId(\d+)"
           render={props => {
             return (
@@ -193,18 +267,35 @@ class ApplicationViews extends Component {
           }}
         />
         <Route
-          exact
-          path="/employees"
+          path="/animals/:animalId(\d+)/edit"
           render={props => {
             return (
-              <EmployeeList
+              <AnimalEditForm
                 {...props}
-                deleteEmployee={this.deleteEmployee}
                 employees={this.state.employees}
+                updateAnimal={this.updateAnimal}
               />
             );
           }}
         />
+        <Route
+          exact
+          path="/employees"
+          render={props => {
+            if (this.isAuthenticated()) {
+              return (
+                <EmployeeList
+                  {...props}
+                  deleteEmployee={this.deleteEmployee}
+                  employees={this.state.employees}
+                />
+              );
+            } else {
+              return <Redirect to="/login" />;
+            }
+          }}
+        />
+
         <Route
           path="/employees/new"
           render={props => {
@@ -218,6 +309,7 @@ class ApplicationViews extends Component {
           }}
         />
         <Route
+          exact
           path="/employees/:employeeId(\d+)"
           render={props => {
             return (
@@ -229,12 +321,26 @@ class ApplicationViews extends Component {
             );
           }}
         />
+
+
+        <Route
+          path="/employees/:employeeId(\d+)/edit"
+          render={props => {
+            return (
+              <EmployeeEditForm
+              {...props}
+              updateEmployee={this.updateEmployee}
+            />
+            );
+          }}
+        />
         <Route
           path="/search"
           render={props => {
             return <SearchResults results={this.state.results} />;
           }}
         />
+        <Route path="/login" component={Login} />
       </div>
     );
   }
