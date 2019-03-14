@@ -2,19 +2,18 @@
   "employees": [
     {
       "id": 1,
-      "name": "Jessica Younke"
+      "name": "Jessica Younke",
+      "locationId": 1
     },
     {
       "id": 2,
-      "name": "Jordan Nelson"
+      "name": "Jordan Nelson",
+      "locationId": 2
     },
     {
       "id": 3,
-      "name": "Zoe LeBlanc"
-    },
-    {
-      "name": "New Employee",
-      "id": 4
+      "name": "Zoe LeBlanc",
+      "locationId": 2
     }
   ],
   "animals": [
@@ -34,6 +33,12 @@
       "id": 6,
       "name": "Checkers",
       "employeeId": null
+    },
+    {
+      "name": "Henry",
+      "breed": "Bulldog",
+      "employeeId": 2,
+      "id": 7
     }
   ],
   "owners": [
@@ -67,6 +72,11 @@
       "id": 1,
       "name": "Nashville North",
       "address": "500 Circle Way"
+    },
+    {
+      "id": 2,
+      "name": "Nashville South",
+      "address": "500 South Circle Way"
     }
   ]
 }

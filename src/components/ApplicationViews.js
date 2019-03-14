@@ -163,6 +163,7 @@ class ApplicationViews extends Component {
               <LocationList
                 deleteLocation={this.deleteLocation}
                 locations={this.state.locations}
+                employees={this.state.employees}
               />
             );
           }}
@@ -287,7 +288,7 @@ class ApplicationViews extends Component {
                 <EmployeeList
                   {...props}
                   deleteEmployee={this.deleteEmployee}
-                  employees={this.state.employees}
+                  employees={this.state.employees} animals={this.state.animals}
                 />
               );
             } else {
