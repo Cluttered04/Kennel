@@ -3,80 +3,82 @@
     {
       "id": 1,
       "name": "Jessica Younke",
-      "locationId": 1
+      "locationId": 1,
+      "image": "https://www.vrc.crim.cam.ac.uk/VRCconferences/conference/cplenaries/pelnspeakers/person-placeholder.jpg/image"
     },
     {
       "id": 2,
       "name": "Jordan Nelson",
-      "locationId": 2
+      "locationId": 2,
+      "image": "https://www.vrc.crim.cam.ac.uk/VRCconferences/conference/cplenaries/pelnspeakers/person-placeholder.jpg/image"
     },
     {
       "id": 3,
       "name": "Zoe LeBlanc",
-      "locationId": 2
+      "locationId": 2,
+      "image": "https://www.vrc.crim.cam.ac.uk/VRCconferences/conference/cplenaries/pelnspeakers/person-placeholder.jpg/image"
     }
   ],
   "animals": [
     {
-      "id": 1,
-      "name": "Doodles",
-      "breed": "poodle",
-      "employeeId": 1
-    },
-    {
       "id": 4,
       "name": "Henlers",
       "breed": "Lab",
-      "employeeId": 3
-    },
-    {
-      "id": 6,
-      "name": "Checkers",
-      "employeeId": null
+      "employeeId": 3,
+      "image": "https://www.purina.com/sites/g/files/auxxlc196/files/dogBreedPlaceholder.png"
     },
     {
       "name": "Henry",
       "breed": "Bulldog",
       "employeeId": 2,
-      "id": 7
+      "id": 7,
+      "image": "https://www.purina.com/sites/g/files/auxxlc196/files/dogBreedPlaceholder.png"
     }
   ],
   "owners": [
     {
       "id": 3,
-      "name": "Russell"
+      "name": "Russell",
+      "image": "https://www.vrc.crim.cam.ac.uk/VRCconferences/conference/cplenaries/pelnspeakers/person-placeholder.jpg/image"
     },
     {
       "id": 4,
-      "name": "Sydney"
+      "name": "Sydney",
+      "image": "https://www.vrc.crim.cam.ac.uk/VRCconferences/conference/cplenaries/pelnspeakers/person-placeholder.jpg/image"
     },
     {
       "id": 5,
-      "name": "Megan"
+      "name": "Megan",
+      "image": "https://www.vrc.crim.cam.ac.uk/VRCconferences/conference/cplenaries/pelnspeakers/person-placeholder.jpg/image"
     },
     {
       "id": 6,
-      "name": "Michelle"
+      "name": "Michelle",
+      "image": "https://www.vrc.crim.cam.ac.uk/VRCconferences/conference/cplenaries/pelnspeakers/person-placeholder.jpg/image"
     },
     {
       "id": 7,
-      "name": "Josh"
+      "name": "Josh",
+      "image": "https://www.vrc.crim.cam.ac.uk/VRCconferences/conference/cplenaries/pelnspeakers/person-placeholder.jpg/image"
     },
     {
       "name": "Sandy",
-      "id": 9
+      "id": 9,
+      "image": "https://www.vrc.crim.cam.ac.uk/VRCconferences/conference/cplenaries/pelnspeakers/person-placeholder.jpg/image"
     }
   ],
   "locations": [
     {
       "id": 1,
       "name": "Nashville North",
-      "address": "500 Circle Way"
+      "address": "500 Circle Way",
+      "image": "https://static.thenounproject.com/png/17374-200.png"
     },
     {
       "id": 2,
       "name": "Nashville South",
-      "address": "500 South Circle Way"
+      "address": "500 South Circle Way",
+      "image": "https://static.thenounproject.com/png/17374-200.png"
     }
   ]
 }

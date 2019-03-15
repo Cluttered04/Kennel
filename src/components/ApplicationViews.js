@@ -1,6 +1,5 @@
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
-import AnimalList from "./animal/AnimalList";
 import LocationList from "./location/LocationList";
 import EmployeeList from "./employee/EmployeeList";
 import OwnerList from "./owner/OwnerList.js";
@@ -20,6 +19,8 @@ import Login from "./authentication/Login";
 import AnimalEditForm from "./animal/AnimalEditForm";
 import EmployeeEditForm from "./employee/EmployeeEditForm";
 import OwnerEditForm from "./owner/OwnerEditForm"
+import ResourceList from "./generics/ResourceList"
+import SingleResourceList from "./generics/SingleResourceList"
 
 class ApplicationViews extends Component {
   isAuthenticated = () => sessionStorage.getItem("credentials") != null;
@@ -160,10 +161,12 @@ class ApplicationViews extends Component {
           path="/"
           render={props => {
             return (
-              <LocationList
+              <ResourceList
                 deleteLocation={this.deleteLocation}
-                locations={this.state.locations}
-                employees={this.state.employees}
+                resource={this.state.locations}
+                secondaryResource={this.state.employees}
+                secondaryRoute="employees" secondaryId="locationId"
+
               />
             );
           }}
@@ -185,10 +188,10 @@ class ApplicationViews extends Component {
           path="/owners"
           render={props => {
             return (
-              <OwnerList
+              <SingleResourceList
                 {...props}
                 deleteOwner={this.deleteOwner}
-                owners={this.state.owners}
+                resource={this.state.owners} route="owners"
               />
             );
           }}
@@ -227,7 +230,7 @@ class ApplicationViews extends Component {
           exact
           path="/animals"
           render={props => {
-            return <AnimalList {...props} animals={this.state.animals} />;
+            return <SingleResourceList {...props} resource={this.state.animals} route="animals"/>;
           }}
         />
         {/* if(this.isAuthenticated()) {
@@ -285,10 +288,11 @@ class ApplicationViews extends Component {
           render={props => {
             if (this.isAuthenticated()) {
               return (
-                <EmployeeList
+                <ResourceList
                   {...props}
                   deleteEmployee={this.deleteEmployee}
-                  employees={this.state.employees} animals={this.state.animals}
+                  resource={this.state.employees}
+                   secondaryResource={this.state.animals} secondaryRoute="animals" secondaryId="employeeId"
                 />
               );
             } else {

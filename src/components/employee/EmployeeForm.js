@@ -14,7 +14,6 @@ export default class EmployeeForm extends Component {
 
 
     constructNewEmployee = evt => {
-        console.log("working!")
         evt.preventDefault();
         const employee = {
             name: this.state.employee

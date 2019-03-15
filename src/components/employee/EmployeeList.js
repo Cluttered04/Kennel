@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import AnimalCard from "../animal/AnimalCard";
-import EmployeeCard from "./EmployeeCard";
+import ResourceCard from "../generics/ResourceCard"
 
 class EmployeeList extends Component {
   render() {
@@ -23,21 +21,17 @@ class EmployeeList extends Component {
             return (
               <div key={singleEmployee.id}>
                 <div>
-                  <EmployeeCard singleEmployee={singleEmployee}/>
+                  <ResourceCard singleEmployee={singleEmployee} resource={singleEmployee} route="employees" />
                   <section>
                     {this.props.animals
                       .filter(animal => animal.employeeId === singleEmployee.id)
                       .map(matchingAnimal => (
-                        <AnimalCard key={matchingAnimal.id} animal={matchingAnimal} />
+                        <ResourceCard key={matchingAnimal.id} resource={matchingAnimal} route="animals" />
                       ))}
                   </section>
                 </div>
-                <Link
-                  className="nav-link"
-                  to={`/employees/${singleEmployee.id}`}
-                >
-                  Details
-                </Link>
+
+
               </div>
             );
           })}
